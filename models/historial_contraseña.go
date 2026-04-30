@@ -2,7 +2,7 @@ package models
 
 import "time"
 
-type HistorialContrasena struct {
+type HistorialContraseña struct {
 	IDHistorial       int       `json:"id_historial"`
 	IDUsuario         int       `json:"id_usuario"`
 	ContrasenaHash    string    `json:"contrasena_hash"`

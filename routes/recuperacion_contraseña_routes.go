@@ -6,9 +6,9 @@ import (
 )
 
 func RegisterRecuperacionContrasenaRoutes(r *mux.Router) {
-	r.HandleFunc("/recuperacion-contrasena", controllers.GetAllRecuperacionContrasena).Methods("GET")
-	r.HandleFunc("/recuperacion-contrasena/{id}", controllers.GetRecuperacionContrasenaByID).Methods("GET")
-	r.HandleFunc("/recuperacion-contrasena", controllers.CreateRecuperacionContrasena).Methods("POST")
-	r.HandleFunc("/recuperacion-contrasena/{id}", controllers.UpdateRecuperacionContrasena).Methods("PUT")
-	r.HandleFunc("/recuperacion-contrasena/{id}", controllers.DeleteRecuperacionContrasena).Methods("DELETE")
+	r.HandleFunc("/recuperacion-contrasena", controllers.GetAllRecuperacionContraseña).Methods("GET")
+	r.HandleFunc("/recuperacion-contrasena/{id}", controllers.GetRecuperacionContraseñaByID).Methods("GET")
+	r.HandleFunc("/recuperacion-contrasena", controllers.CreateRecuperacionContraseña).Methods("POST")
+	r.HandleFunc("/recuperacion-contrasena/{id}", controllers.UpdateRecuperacionContraseña).Methods("PUT")
+	r.HandleFunc("/recuperacion-contrasena/{id}", controllers.DeleteRecuperacionContraseña).Methods("DELETE")
 }

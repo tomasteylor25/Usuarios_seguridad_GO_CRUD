@@ -2,7 +2,7 @@ package models
 
 import "time"
 
-type CrearContrasena struct {
+type CrearContraseña struct {
 	IDUsuario          int       `json:"id_usuario"`
 	Contrasena         string    `json:"contrasena"`
 	ConfirmarContrasena string   `json:"confirmar_contrasena"`

@@ -6,9 +6,9 @@ import (
 )
 
 func RegisterHistorialContrasenaRoutes(r *mux.Router) {
-	r.HandleFunc("/historial-contrasena", controllers.GetAllHistorialContrasena).Methods("GET")
-	r.HandleFunc("/historial-contrasena/{id}", controllers.GetHistorialContrasenaByID).Methods("GET")
-	r.HandleFunc("/historial-contrasena", controllers.CreateHistorialContrasena).Methods("POST")
-	r.HandleFunc("/historial-contrasena/{id}", controllers.UpdateHistorialContrasena).Methods("PUT")
-	r.HandleFunc("/historial-contrasena/{id}", controllers.DeleteHistorialContrasena).Methods("DELETE")
+	r.HandleFunc("/historial-contrasena", controllers.GetAllHistorialContraseña).Methods("GET")
+	r.HandleFunc("/historial-contrasena/{id}", controllers.GetHistorialContraseñaByID).Methods("GET")
+	r.HandleFunc("/historial-contrasena", controllers.CreateHistorialContraseña).Methods("POST")
+	r.HandleFunc("/historial-contrasena/{id}", controllers.UpdateHistorialContraseña).Methods("PUT")
+	r.HandleFunc("/historial-contrasena/{id}", controllers.DeleteHistorialContraseña).Methods("DELETE")
 }

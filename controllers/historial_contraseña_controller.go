@@ -11,7 +11,7 @@ import (
 )
 
 // GET ALL historial contraseñas
-func GetAllHistorialContrasena(w http.ResponseWriter, r *http.Request) {
+func GetAllHistorialContraseña(w http.ResponseWriter, r *http.Request) {
 	rows, err := config.DB.Query(
 		`SELECT id_historial, id_usuario, contrasena_hash, fecha_cambio, activo, fecha_creacion, fecha_modificacion 
 		FROM "Usuario_seguridad"."HistorialContrasena"`)
@@ -21,9 +21,9 @@ func GetAllHistorialContrasena(w http.ResponseWriter, r *http.Request) {
 	}
 	defer rows.Close()
 
-	var list []models.HistorialContrasena
+	var list []models.HistorialContraseña
 	for rows.Next() {
-		var h models.HistorialContrasena
+		var h models.HistorialContraseña
 		rows.Scan(&h.IDHistorial, &h.IDUsuario, &h.ContrasenaHash, &h.FechaCambio, &h.Activo, &h.FechaCreacion, &h.FechaModificacion)
 		list = append(list, h)
 	}
@@ -31,9 +31,9 @@ func GetAllHistorialContrasena(w http.ResponseWriter, r *http.Request) {
 }
 
 // GET BY ID historial
-func GetHistorialContrasenaByID(w http.ResponseWriter, r *http.Request) {
+func GetHistorialContraseñaByID(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
-	var h models.HistorialContrasena
+	var h models.HistorialContraseña
 
 	err := config.DB.QueryRow(
 		`SELECT id_historial, id_usuario, contrasena_hash, fecha_cambio, activo, fecha_creacion, fecha_modificacion 
@@ -52,8 +52,8 @@ func GetHistorialContrasenaByID(w http.ResponseWriter, r *http.Request) {
 }
 
 // POST crear historial contraseña
-func CreateHistorialContrasena(w http.ResponseWriter, r *http.Request) {
-	var h models.HistorialContrasena
+func CreateHistorialContraseña(w http.ResponseWriter, r *http.Request) {
+	var h models.HistorialContraseña
 	if err := json.NewDecoder(r.Body).Decode(&h); err != nil {
 		respondJSON(w, 400, map[string]string{"error": "JSON inválido"})
 		return
@@ -73,9 +73,9 @@ func CreateHistorialContrasena(w http.ResponseWriter, r *http.Request) {
 }
 
 // PUT actualizar historial
-func UpdateHistorialContrasena(w http.ResponseWriter, r *http.Request) {
+func UpdateHistorialContraseña(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
-	var h models.HistorialContrasena
+	var h models.HistorialContraseña
 	json.NewDecoder(r.Body).Decode(&h)
 
 	_, err := config.DB.Exec(
@@ -92,7 +92,7 @@ func UpdateHistorialContrasena(w http.ResponseWriter, r *http.Request) {
 }
 
 // DELETE historial (baja lógica)
-func DeleteHistorialContrasena(w http.ResponseWriter, r *http.Request) {
+func DeleteHistorialContraseña(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
 	_, err := config.DB.Exec(
 		`UPDATE "Usuario_seguridad"."HistorialContrasena" SET activo=FALSE, fecha_modificacion=now() WHERE id_historial=$1`, id)

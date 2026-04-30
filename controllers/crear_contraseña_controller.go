@@ -11,7 +11,7 @@ import (
 )
 
 // GET ALL crear contraseñas
-func GetAllCrearContrasena(w http.ResponseWriter, r *http.Request) {
+func GetAllCrearContraseña(w http.ResponseWriter, r *http.Request) {
 	rows, err := config.DB.Query(
 		`SELECT id_usuario, contrasena, confirmar_contrasena, activo, fecha_creacion, fecha_modificacion 
 		FROM "Usuario_seguridad"."Crear_contrasena"`)
@@ -21,9 +21,9 @@ func GetAllCrearContrasena(w http.ResponseWriter, r *http.Request) {
 	}
 	defer rows.Close()
 
-	var list []models.CrearContrasena
+	var list []models.CrearContraseña
 	for rows.Next() {
-		var cc models.CrearContrasena
+		var cc models.CrearContraseña
 		rows.Scan(&cc.IDUsuario, &cc.Contrasena, &cc.ConfirmarContrasena, &cc.Activo, &cc.FechaCreacion, &cc.FechaModificacion)
 		list = append(list, cc)
 	}
@@ -31,9 +31,9 @@ func GetAllCrearContrasena(w http.ResponseWriter, r *http.Request) {
 }
 
 // GET BY ID crear contraseña
-func GetCrearContrasenaByID(w http.ResponseWriter, r *http.Request) {
+func GetCrearContraseñaByID(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
-	var cc models.CrearContrasena
+	var cc models.CrearContraseña
 
 	err := config.DB.QueryRow(
 		`SELECT id_usuario, contrasena, confirmar_contrasena, activo, fecha_creacion, fecha_modificacion 
@@ -52,8 +52,8 @@ func GetCrearContrasenaByID(w http.ResponseWriter, r *http.Request) {
 }
 
 // POST crear contraseña
-func CreateCrearContrasena(w http.ResponseWriter, r *http.Request) {
-	var cc models.CrearContrasena
+func CreateCrearContraseña(w http.ResponseWriter, r *http.Request) {
+	var cc models.CrearContraseña
 	if err := json.NewDecoder(r.Body).Decode(&cc); err != nil {
 		respondJSON(w, 400, map[string]string{"error": "JSON inválido"})
 		return
@@ -73,9 +73,9 @@ func CreateCrearContrasena(w http.ResponseWriter, r *http.Request) {
 }
 
 // PUT actualizar crear contraseña
-func UpdateCrearContrasena(w http.ResponseWriter, r *http.Request) {
+func UpdateCrearContraseña(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
-	var cc models.CrearContrasena
+	var cc models.CrearContraseña
 	json.NewDecoder(r.Body).Decode(&cc)
 
 	_, err := config.DB.Exec(
@@ -92,7 +92,7 @@ func UpdateCrearContrasena(w http.ResponseWriter, r *http.Request) {
 }
 
 // DELETE crear contraseña (baja lógica)
-func DeleteCrearContrasena(w http.ResponseWriter, r *http.Request) {
+func DeleteCrearContraseña(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
 	_, err := config.DB.Exec(
 		`UPDATE "Usuario_seguridad"."Crear_contrasena" SET activo=FALSE, fecha_modificacion=now() WHERE id_usuario=$1`, id)

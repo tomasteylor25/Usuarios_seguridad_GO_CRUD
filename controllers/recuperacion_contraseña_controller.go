@@ -11,7 +11,7 @@ import (
 )
 
 // GET ALL recuperaciones
-func GetAllRecuperacionContrasena(w http.ResponseWriter, r *http.Request) {
+func GetAllRecuperacionContraseña(w http.ResponseWriter, r *http.Request) {
 	rows, err := config.DB.Query(
 		`SELECT id_recuperacion, id_usuario, token, codigo, usado, fecha_expiracion, activo, fecha_creacion, fecha_modificacion 
 		FROM "Usuario_seguridad"."RecuperacionContrasena"`)
@@ -21,9 +21,9 @@ func GetAllRecuperacionContrasena(w http.ResponseWriter, r *http.Request) {
 	}
 	defer rows.Close()
 
-	var list []models.RecuperacionContrasena
+	var list []models.RecuperacionContraseña
 	for rows.Next() {
-		var rc models.RecuperacionContrasena
+		var rc models.RecuperacionContraseña
 		rows.Scan(&rc.IDRecuperacion, &rc.IDUsuario, &rc.Token, &rc.Codigo, &rc.Usado, &rc.FechaExpiracion, &rc.Activo, &rc.FechaCreacion, &rc.FechaModificacion)
 		list = append(list, rc)
 	}
@@ -31,9 +31,9 @@ func GetAllRecuperacionContrasena(w http.ResponseWriter, r *http.Request) {
 }
 
 // GET BY ID recuperacion
-func GetRecuperacionContrasenaByID(w http.ResponseWriter, r *http.Request) {
+func GetRecuperacionContraseñaByID(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
-	var rc models.RecuperacionContrasena
+	var rc models.RecuperacionContraseña
 
 	err := config.DB.QueryRow(
 		`SELECT id_recuperacion, id_usuario, token, codigo, usado, fecha_expiracion, activo, fecha_creacion, fecha_modificacion 
@@ -52,8 +52,8 @@ func GetRecuperacionContrasenaByID(w http.ResponseWriter, r *http.Request) {
 }
 
 // POST crear recuperacion
-func CreateRecuperacionContrasena(w http.ResponseWriter, r *http.Request) {
-	var rc models.RecuperacionContrasena
+func CreateRecuperacionContraseña(w http.ResponseWriter, r *http.Request) {
+	var rc models.RecuperacionContraseña
 	if err := json.NewDecoder(r.Body).Decode(&rc); err != nil {
 		respondJSON(w, 400, map[string]string{"error": "JSON inválido"})
 		return
@@ -73,9 +73,9 @@ func CreateRecuperacionContrasena(w http.ResponseWriter, r *http.Request) {
 }
 
 // PUT actualizar recuperacion
-func UpdateRecuperacionContrasena(w http.ResponseWriter, r *http.Request) {
+func UpdateRecuperacionContraseña(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
-	var rc models.RecuperacionContrasena
+	var rc models.RecuperacionContraseña
 	json.NewDecoder(r.Body).Decode(&rc)
 
 	_, err := config.DB.Exec(
@@ -92,7 +92,7 @@ func UpdateRecuperacionContrasena(w http.ResponseWriter, r *http.Request) {
 }
 
 // DELETE recuperacion (baja lógica)
-func DeleteRecuperacionContrasena(w http.ResponseWriter, r *http.Request) {
+func DeleteRecuperacionContraseña(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
 	_, err := config.DB.Exec(
 		`UPDATE "Usuario_seguridad"."RecuperacionContrasena" SET activo=FALSE, fecha_modificacion=now() WHERE id_recuperacion=$1`, id)

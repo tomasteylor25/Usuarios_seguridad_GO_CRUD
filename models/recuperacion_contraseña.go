@@ -2,7 +2,7 @@ package models
 
 import "time"
 
-type RecuperacionContrasena struct {
+type RecuperacionContraseña struct {
 	IDRecuperacion    int        `json:"id_recuperacion"`
 	IDUsuario         int        `json:"id_usuario"`
 	Token             string     `json:"token"`
