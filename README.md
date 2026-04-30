@@ -1,6 +1,6 @@
 # Usuarios_seguridad_GO_CRUD
 
-Módulo de seguridad del proyecto **Xchango** — una plataforma de trueque e intercambio de bienes y servicios. Este módulo se encarga de todo lo relacionado con los usuarios: registro, autenticación, manejo de contraseñas, sesiones activas y perfil personal.
+Módulo de seguridad del proyecto **Xchango** una plataforma de trueque e intercambio de bienes y servicios. Este módulo se encarga de todo lo relacionado con los usuarios: registro, autenticación, manejo de contraseñas, sesiones activas y perfil personal.
 
 ---
 
@@ -49,7 +49,7 @@ Usuarios_seguridad_GO_CRUD/
 HOST     → localhost
 PORT     → 5432
 USER     → postgres
-PASSWORD → tu_contraseña
+PASSWORD → postgres
 DB       → Xchango_db
 SCHEMA   → Usuario_seguridad
 PORT     → 8082
